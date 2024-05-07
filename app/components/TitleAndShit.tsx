@@ -24,12 +24,8 @@ const StyledTitleContainer = styled.div`
   position: relative;
   min-height: 100vh; // Full height
   overflow: hidden; // Ensures nothing spills out
-  
-  @media (max-width: 768px) {
-    padding: 5rem 1rem; // Increase padding and make sure it's the same on all sides
-  }
 
-  @media (max-width: 480px) {
+  @media (max-width: 1022px) {
     padding: 3rem 1rem; // Further increase padding for very small devices
   }
 `;
@@ -41,20 +37,15 @@ const StyledTitle = styled(motion.p)`
   margin: 0; // Reset margin
 
   // Reduce font size and line height on smaller screens
-  @media (max-width: 768px) {
-    font-size: 5rem; // Further reduce font size
-    line-height: 4.5rem;
-    margin-bottom: 1rem; // Add space between titles
-    color: white;
-  }
 
-  @media (max-width: 480px) {
+  @media (max-width: 670px) {
     font-size: 5rem; // Even smaller font size for very small devices
     line-height: 5rem;
     overflow: visible;
     text-align: center;
     color: black;
-    padding: 0%;
+    padding: 0;
+      z-index: 99999 !important;
   }
 `;
 
@@ -64,12 +55,7 @@ const StyledSubtitle = styled(motion.p)`
   text-transform: none; // Override any global styles
   margin: 1rem 0; // Spacing around the subtitle
 
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-    margin: 1.5rem 0; // Increase space around the subtitle
-  }
-
-  @media (max-width: 480px) {
+  @media (max-width: 1022px) {
     font-size: 1.2rem;
     text-align: center;
     margin: 1.5rem 0; // Increase space around the subtitle
@@ -92,13 +78,9 @@ const StyledButton = styled(motion.button)`
     background: linear-gradient(to br, #3b82f6, #6366f1, #7c3aed);
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.45); // Increase shadow on hover
   }
+    
 
-  @media (max-width: 768px) {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.9rem; // Slightly reduce font size
-  }
-
-  @media (max-width: 480px) {
+  @media (max-width: 1022px) {
     padding: 0.6rem 1.2rem;
     font-size: 1rem; // Further reduce font size
     color: black;

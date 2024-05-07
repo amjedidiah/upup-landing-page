@@ -36,19 +36,19 @@ const Navbar = () => {
 
       {/* Desktop Menu */}
       <div className="flex justify-between items-center w-full">
-        <nav className="hidden md:flex md:items-center md:justify-center flex-1">
+        <nav className="md:hidden flex items-center justify-center flex-1">
           <Link href="/" passHref><span className="cursor-pointer px-4 text-gray-800 hover:text-blue-600 transition-colors duration-200">Home</span></Link>
           <Link href="/docs/index.html" passHref><span className="cursor-pointer px-4 text-gray-800 hover:text-blue-600 transition-colors duration-200">Docs</span></Link>
           <Link href="/demo" passHref><span className="cursor-pointer px-4 text-gray-800 hover:text-blue-600 transition-colors duration-200">Demo</span></Link>
         </nav>
         {/* Learn More Button */}
         <Link href="https://github.com/DevinoSolutions/upup" passHref>
-          <span className="cursor-pointer hidden md:block backdrop-blur-3xl p-2 px-4 rounded bg-white">Learn More</span>
+          <span className="cursor-pointer md:hidden block backdrop-blur-3xl p-2 px-4 rounded bg-white">Learn More</span>
         </Link>
       </div>
 
       {/* Hamburger Menu Button */}
-      <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+      <button className="hidden md:flex p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         {isMenuOpen ? <RiCloseFill className="h-6 w-6" /> : <RiMenu3Fill className="h-6 w-6" />}
       </button>
 
@@ -61,10 +61,10 @@ const Navbar = () => {
     display: isMenuOpen ? 'flex' : 'none',
   }}
   transition={{ duration: 0.5, ease: "linear" }}
-  className="absolute top-full right-0 max-w-full w-screen md:w-auto bg-white shadow-md flex-col md:hidden overflow-x-hidden"
+  className="absolute top-full right-0 max-w-full md:w-screen w-auto bg-white shadow-md flex-col md:flex hidden overflow-x-hidden"
   >
         <Link href="/" passHref><span className="cursor-pointer block p-4 text-gray-800 hover:bg-blue-600 hover:text-white transition-colors duration-300">Home</span></Link>
-        <Link href="/docs/index.html" passHref><span className="cursor-pointer block p-4 text-gray-800 hover:bg-blue-600 hover:text-white transition-colors duration-300">Docs</span></Link>
+        <Link href="/docs" passHref><span className="cursor-pointer block p-4 text-gray-800 hover:bg-blue-600 hover:text-white transition-colors duration-300">Docs</span></Link>
         <Link href="/demo" passHref><span className="cursor-pointer block p-4 text-gray-800 hover:bg-blue-600 hover:text-white transition-colors duration-300">Demo</span></Link>
         {/* Mobile Learn More Button */}
         <Link href="https://github.com/DevinoSolutions/upup" passHref><span className="cursor-pointer block p-4 text-gray-800 hover:bg-blue-600 hover:text-white transition-colors duration-300">Learn More</span></Link>
