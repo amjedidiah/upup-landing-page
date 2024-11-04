@@ -18,9 +18,9 @@
       }
     ],
     "paths": {
-      "~/*": ["./*"]
+      "@/*": ["./app/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/AnimatedShapes.jsx", "app/components/Footer.jsx", "app/components/Intro.jsx", "app/components/Navbar.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

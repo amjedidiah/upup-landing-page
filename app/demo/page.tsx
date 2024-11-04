@@ -136,45 +136,51 @@ const uploadAdapters = [
 return (
   <>
     <div className="font-sans font-Poppins m-0 p-0 bg-[#f8f9fa]">
-    <div className="flex flex-col items-center pt-[70px] min-h-[10vh] w-[100%]">
-      <div
-          className="text-5xl text-gray-800 px-5 md:px-0 md:mt-16 transition mt-10 md:text-3xl">
-        Upup File Uploader Demo
-      </div>
-      <div
-          className="text-base md:text-sm lg:text-xs text-gray-700 leading-relaxed md:text-left md:max-w-md lg:max-w-sm md:px-3 lg:px-4 md:mt-10 lg:mt-20 transition mt-5">
-        This is a demonstration of the UpUp uploader. Select the sources you want to enable and then upload
-      </div>
-      <div className="flex w-[80%] max-w-[1200px] mt-[80px] mb-[20px] md:flex-col md:items-center">
-        <div className="w-[30%] pr-[20px] flex flex-col mp:w-[80%] md:pr-0 md:mb-[20px]">
-          <div className="text-[1.5em] mb-[20px] font-[#007bff]">Remote Sources</div>
-          <div className="md:flex md:flex-col md:items-start grid grid-cols-[repeat(auto-fill, minmax(120px, 1fr))] gap-[10px] mt-10px">
-            {Object.keys(services).map((service) => (
-              <div className="flex items-center md:mb-[10px]" key={service}>
-                <label className="cursor-pointer transition block hover:font-[#007bff]">
-                  <input
-                    type="checkbox"
-                    className="mr-[10px] text-[#007bff]"
-                    checked={services[service as keyof typeof services]}
-                    onChange={() => handleServiceChange(service as keyof typeof services)}
-                  />{' '}
-                  {service}
-                </label>
-              </div>
-            ))}
+      <div className="flex flex-col items-center pt-[70px] min-h-[10vh] w-[100%]">
+        <div className="md:text-5xl text-gray-800 md:px-5 px-0 mt-16 transition md:mt-10 text-3xl">
+          Upup File Uploader Demo
+        </div>
+        <div className="lg:text-base md:max-lg:text-sm max-md:text-xs text-gray-700 leading-relaxed max-md:text-left max-md:max-w-md md:max-lg:max-w-sm max-md:px-3 md:max-lg:px-4 max-md:mt-10 md:max-lg:mt-20 transition mt-5">
+          This is a demonstration of the UpUp uploader. Select the sources you
+          want to enable and then upload
+        </div>
+        <div className="flex w-[80%] max-w-[1200px] mt-[80px] mb-[20px] max-md:flex-col max-md:items-center">
+          <div className="md:w-[30%] md:pr-[20px] flex flex-col max-md:w-[80%] max-md:pr-0 max-md:mb-[20px]">
+            <div className="text-[1.5em] mb-[20px] font-[#007bff]">
+              Remote Sources
+            </div>
+            <div className="max-md:flex max-md:flex-col max-md:items-start grid grid-cols-[repeat(auto-fill, minmax(120px, 1fr))] gap-[10px] mt-10px">
+              {Object.keys(services).map((service) => (
+                <div
+                  className="flex items-center max-md:mb-[10px]"
+                  key={service}
+                >
+                  <label className="cursor-pointer transition block hover:font-[#007bff]">
+                    <input
+                      type="checkbox"
+                      className="mr-[10px] text-[#007bff]"
+                      checked={services[service as keyof typeof services]}
+                      onChange={() =>
+                        handleServiceChange(service as keyof typeof services)
+                      }
+                    />{" "}
+                    {service}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="w-[80%] md:w-[70%]">
+            <UpupUploader
+              baseConfigs={baseConfigs}
+              cloudStorageConfigs={cloudStorageConfigs}
+              googleConfigs={googleConfigs}
+              oneDriveConfigs={oneDriveConfigs}
+              uploadAdapters={uploadAdapters}
+            />
           </div>
         </div>
-        <div className="w-[70%] md:w-[80%]">
-          <UpupUploader
-            baseConfigs={baseConfigs}
-            cloudStorageConfigs={cloudStorageConfigs}
-            googleConfigs={googleConfigs}
-            oneDriveConfigs={oneDriveConfigs}
-            uploadAdapters={uploadAdapters}
-          />
-        </div>
       </div>
-    </div>
     </div>
   </>
 );

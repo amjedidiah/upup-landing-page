@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
+import Navbar from "@/components/Navbar";
 import { FaGithub, FaBook } from "react-icons/fa"; // For GitHub icon and a more standard book icon
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["500"] });
@@ -18,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className + " min-h-screen bg-white text-gray-700"}>
+      <body
+        className={poppins.className + " min-h-screen bg-white text-gray-700"}
+      >
         <Navbar />
         {children}
 
