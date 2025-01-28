@@ -30,18 +30,19 @@ export default function HeroSection() {
         </div>
 
         <Heading as="h1" className={clsx("hero__title", styles.heroTitle)}>
-          Modern File Uploads
-          <span className={styles.heroTitleSpan}>for React</span>
+          File Uploads for the
+          <span className={styles.heroTitleSpan}>Modern Web</span>
         </Heading>
 
         <p className={clsx("hero__subtitle", styles.heroSubTitle)}>
-          Open-source React component library with cloud storage integrations,
-          drag & drop, and enterprise-grade features.
+          Fully-customisable open-source <strong>full-stack</strong> file upload
+          library with cloud storage integrations, drag & drop, and
+          enterprise-grade features.
         </p>
 
         <div className={styles.heroCTAContainer}>
           <Link
-            to="/docs/intro"
+            to="/docs/getting-started"
             className={clsx("button button--lg", styles.heroGetStartedButton)}
           >
             <span>Get Started</span>

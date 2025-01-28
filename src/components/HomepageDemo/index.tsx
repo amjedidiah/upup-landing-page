@@ -5,12 +5,13 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import Uploader from "@site/src/components/Uploader";
 
+const UPUP_LIMIT_DEFAULT = 1;
 const UPUP_LIMIT_MIN = 1;
 const UPUP_LIMIT_MAX = 30;
 
 export default function HomepageDemo() {
   const [mini, setMini] = useState(false);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(UPUP_LIMIT_DEFAULT);
 
   const handleMiniChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (e) => {
@@ -83,7 +84,9 @@ export default function HomepageDemo() {
 
             <small>
               ** Check the docs to see the{" "}
-              <Link to="/docs/intro">full list of component props</Link>
+              <Link to="/docs/category/upupuploader">
+                full list of component props
+              </Link>
             </small>
           </div>
         </div>

@@ -90,8 +90,8 @@ const config: Config = {
       copyright: `Built with 💙 by <a target="_blank" href="https://devino.ca">Devino Solutions Inc</a>.`,
     },
     prism: {
-      theme: prismThemes.nightOwlLight,
-      darkTheme: prismThemes.nightOwl,
+      theme: prismThemes.oneLight,
+      darkTheme: prismThemes.oneDark,
     },
   } satisfies Preset.ThemeConfig,
 
@@ -110,6 +110,7 @@ const config: Config = {
     },
     tokenEndpoint: "",
   },
+  themes: ["@docusaurus/theme-mermaid"],
 };
 
 export default config;
