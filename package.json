@@ -13,7 +13,8 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@bassem97/upup": "file:../upup",
@@ -33,6 +34,7 @@
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/tsconfig": "3.7.0",
     "@docusaurus/types": "3.7.0",
+    "@eslint/compat": "^1.2.5",
     "@eslint/js": "^9.19.0",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",

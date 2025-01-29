@@ -1,4 +1,18 @@
 {
-    "cSpell.words": ["Backblaze", "sonner", "Upup"],
-    "deepscan.enable": true
+  "cSpell.words": [
+    "backblaze",
+    "Backblaze",
+    "bassem",
+    "digitalocean",
+    "docusaurus",
+    "Geist",
+    "github",
+    "Infima",
+    "Retryability",
+    "retryable",
+    "sonner",
+    "upup",
+    "Upup"
+  ],
+  "deepscan.enable": true
 }

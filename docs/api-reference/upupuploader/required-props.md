@@ -82,8 +82,8 @@ Your server must configure CORS (Cross-Origin Resource Sharing) to explicitly al
 Here's a basic Express server configuration example:
 
 ```javascript
-const express = require('express');
-const cors = require('cors');
+import express from "express";
+import cors from "cors";
 
 const app = express();
 
@@ -99,4 +99,6 @@ app.use(cors({
 app.post('/api/upload-token', (req, res) => {
   // Handle upload logic here
 });
+```
+
 :::

@@ -66,6 +66,10 @@
   transition-timing-function: ease-in-out;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 h1 {
   font-size: 3.75rem /* 60px */;
 }
@@ -185,6 +189,7 @@ h4 {
 
   /* The slider itself */
   .slider {
+    appearance: none;
     -webkit-appearance: none;
     width: 100%;
     height: 10px;
@@ -217,6 +222,14 @@ h4 {
     &:disabled {
       opacity: 0.3;
     }
+  }
+}
+
+.feedback-link {
+  color: unset;
+
+  &:hover {
+    text-decoration: none;
   }
 }
 

@@ -5,6 +5,7 @@ import HomepageHero from "@site/src/components/HomepageHero";
 import HomepageDemo from "@site/src/components/HomepageDemo";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Toast from "@site/src/components/Toast";
+import FeedbackSection from "@site/src/components/FeedbackSection";
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
@@ -16,6 +17,7 @@ export default function Home() {
         <HomepageDemo />
         <HomepageFeatures />
       </main>
+      <FeedbackSection />
       <Toast />
     </Layout>
   );

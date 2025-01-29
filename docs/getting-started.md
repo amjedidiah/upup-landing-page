@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Getting Started
 
-Upup is an open-source, free-to-use **Full-stack library** that easily handles your file upload needs with seamless [DigitalOcean Spaces](/docs/intro.md), [Amazon S3](/docs/intro.md), [Backblaze](/docs/intro.md), [Microsoft Azure Blob Storage](/docs/intro.md), [Google Drive](/docs/intro.md), and [OneDrive](/docs/intro.md) integrations.
+Upup is an open-source, free-to-use **Full-stack library** that easily handles your file upload needs with seamless DigitalOcean Spaces, Amazon S3, Backblaze, Microsoft Azure Blob Storage, Google Drive, and OneDrive integrations.
 
 ## Installation
 
@@ -64,7 +64,7 @@ sequenceDiagram
 
 ## Usage
 
-The example below shows a minimal configuration for [AWS S3](/docs/intro.md) upload, using the [UpupUploader](/docs/category/upupuploader) client component and the [`s3GeneratePresignedUrl`](/docs/intro.md) utility
+The example below shows a minimal configuration for AWS S3 upload, using the [UpupUploader](/docs/category/upupuploader) client component and the [`s3GeneratePresignedUrl`](/docs/api-reference/s3-generate-presigned-url.md) utility. For full code examples check these [docs](/docs/code-examples.md)
 
 ### Client Side
 
@@ -144,7 +144,7 @@ app.post('/api/upload-token', async (req, res) => {
 });
 ```
 
-Once again, the example shown above is the minimal required configuration for AWS S3 upload. For uploading to other services see these [docs](/docs/intro.md)
+Once again, the example shown above is the minimal required configuration for AWS S3 upload. For uploading to other services see these [docs](/docs/code-examples.md)
 
 ### Important Note
 
@@ -153,15 +153,15 @@ It is important to note that while it is possible to:
 - Implement your own custom logic on the client and use the server utilities provided by this component on the server OR
 - Use the `UpupUploader` React component on the client and implement your own custom server logic to handle uploads,
 
-For best performance and minimal overhead, we advise that you use both the [`UpupUploader`](/docs/category/upupuploader) React component together with the server utilities, like [`s3GeneratePresignedUrl`](/docs/intro.md)
+For best performance and minimal overhead, we advise that you use both the [`UpupUploader`](/docs/category/upupuploader) React component together with the server utilities, like [`s3GeneratePresignedUrl`](/docs/api-reference/s3-generate-presigned-url.md)
 
 The full list of exported server utility functions include:
 
-- [`s3GeneratePresignedUrl`](/docs/intro.md): for S3-compatible Uploads: like AWS, Digital Ocean, Backblaze
-- [`azureGenerateSasUrl`](/docs/intro.md): for Azure Blob Uploads only
+- [`s3GeneratePresignedUrl`](/docs/api-reference/s3-generate-presigned-url.md): for S3-compatible Uploads: like AWS, Digital Ocean, Backblaze
+- [`azureGenerateSasUrl`](/docs/api-reference/azure-generate-sas-url.md): for Azure Blob Uploads only
 
 :::info
 
-For a full list of values sent by the React component to the server, check out these [docs](/docs/intro.md).
+For a full list of values sent by the React component to the server, check out these [docs](/docs/api-reference/upupuploader/required-props.md#tokenendpoint).
 
 :::
