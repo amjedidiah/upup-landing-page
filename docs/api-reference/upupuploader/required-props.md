@@ -37,7 +37,7 @@ throw new Error(`Invalid provider: ${this.config.provider}`)
 Here is an example of using the Azure Provider:
 
 ```tsx
-import { UpupUploader, UpupProvider } from "@bassem97/upup";
+import { UpupUploader, UpupProvider } from "@devino.solutions/upup";
 
 export default function Uploader() {
   return (

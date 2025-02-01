@@ -1,24 +1,18 @@
 import React from "react";
-import { Toaster } from "sonner";
+import { ToastContainer } from "react-toastify";
 import { useColorMode } from "@docusaurus/theme-common";
 
 export default function Toast() {
   const { colorMode } = useColorMode();
 
   return (
-    <Toaster
-      duration={3500}
-      pauseWhenPageIsHidden
-      position="top-right"
-      toastOptions={{
-        style: {
-          right: "-0.75rem",
-          top: "1.5rem",
-          padding: "0.75rem 0.875rem",
-        },
-      }}
-      richColors
+    <ToastContainer
+      limit={3}
       theme={colorMode === "dark" ? "dark" : "light"}
+      position="top-right"
+      progressClassName="h-0"
+      hideProgressBar
+      newestOnTop
     />
   );
 }

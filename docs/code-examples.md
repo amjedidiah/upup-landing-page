@@ -10,7 +10,7 @@ sidebar_position: 3
 
 ```tsx
 "use client";
-import { UpupUploader, UpupProvider } from "@bassem97/upup";
+import { UpupUploader, UpupProvider } from "@devino.solutions/upup";
 
 export default function Uploader() {
   return (
@@ -34,7 +34,7 @@ export default function Page() {
 ```
 
 ```ts
-import { s3GeneratePresignedUrl } from "@bassem97/upup/server";
+import { s3GeneratePresignedUrl } from "@devino.solutions/upup/server";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -86,7 +86,7 @@ export async function POST(req: Request) {
 ### React.js Basic Implementation
 
 ```tsx
-import { UpupUploader, UpupProvider, UploadAdapter } from "@bassem97/upup";
+import { UpupUploader, UpupProvider, UploadAdapter } from "@devino.solutions/upup";
 
 export default function Uploader() {
   return (
@@ -117,7 +117,7 @@ import dotenv from "dotenv";
 import {
   s3GeneratePresignedUrl,
   azureGenerateSasUrl,
-} from "@bassem97/upup/server";
+} from "@devino.solutions/upup/server";
 
 dotenv.config();
 const app = express();

@@ -13,25 +13,25 @@ Install upup with your favourite package manager
 ### npm
 
 ```bash
-npm install @bassem97/upup
+npm install @devino.solutions/upup
 ```
 
 ### yarn
 
 ```bash
-yarn add @bassem97/upup
+yarn add @devino.solutions/upup
 ```
 
 ### pnpm
 
 ```bash
-pnpm add @bassem97/upup
+pnpm add @devino.solutions/upup
 ```
 
 ### bun
 
 ```bash
-bun install @bassem97/upup
+bun install @devino.solutions/upup
 ```
 
 ## Logic Diagram
@@ -69,7 +69,7 @@ The example below shows a minimal configuration for AWS S3 upload, using the [Up
 ### Client Side
 
 ```tsx
-import { UpupUploader, UpupProvider } from "@bassem97/upup";
+import { UpupUploader, UpupProvider } from "@devino.solutions/upup";
 
 export default function Uploader() {
   return (
@@ -106,7 +106,7 @@ export default function App() {
 ### Server Side
 
 ```ts
-import { s3GeneratePresignedUrl } from "@bassem97/upup/server";
+import { s3GeneratePresignedUrl } from "@devino.solutions/upup/server";
 
 app.post('/api/upload-token', async (req, res) => {
   try {

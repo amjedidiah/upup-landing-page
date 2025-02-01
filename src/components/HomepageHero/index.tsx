@@ -1,13 +1,15 @@
 import Heading from "@theme/Heading";
 import Link from "@docusaurus/Link";
-import { Link as ScrollLink } from "react-scroll";
 import clsx from "clsx";
 import styles from "./styles.module.css";
 import React, { useCallback, useMemo } from "react";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 
 export default function HeroSection() {
-  const installationText = useMemo(() => "npm install @bassem97/upup", []);
+  const installationText = useMemo(
+    () => "npm install @devino.solutions/upup",
+    []
+  );
   const handleCopy = useCallback(() => {
     // Only execute in browser environment
     if (typeof window !== "undefined" && navigator.clipboard) {
@@ -17,7 +19,7 @@ export default function HeroSection() {
           toast.info("Copied!");
         })
         .catch(() => {
-          toast.info("Please copy text manually!");
+          toast.warn("Please copy text manually!");
         });
     }
   }, [installationText]);
@@ -61,12 +63,7 @@ export default function HeroSection() {
               <path d="m9 18 6-6-6-6" />
             </svg>
           </Link>
-          <ScrollLink
-            smooth
-            to="demo"
-            className={styles.heroDemoLink}
-            offset={-60}
-          >
+          <a href="#demo" className={styles.heroDemoLink}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -82,7 +79,7 @@ export default function HeroSection() {
               <polygon points="6 3 20 12 6 21 6 3" />
             </svg>
             <span>Live Demo</span>
-          </ScrollLink>
+          </a>
         </div>
 
         <div className={styles.heroCodeWrapper}>

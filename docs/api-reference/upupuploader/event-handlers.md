@@ -8,7 +8,7 @@ These callback props allow you to hook into key moments of the file(s) selection
 
 | Prop | Example | Type | Status | Default Value |
 | ---  | ------- | ---- | ------ | ------------- |
-| [onError](#onerror) | `onError={(errorMessage) => action()}` | function | optional | [`toast.error`](https://sonner.emilkowal.ski/toast#error) |
+| [onError](#onerror) | `onError={(errorMessage) => action()}` | function | optional | [`toast.error`](https://fkhadra.github.io/react-toastify/api/toast) |
 | [onFileClick](#onfileclick) | `onFileClick={file => action()}` | function | optional | - |
 | [onFileRemove](#onfileremove) | `onFileRemove={file => action()}` | function | optional | - |
 | [onFileTypeMismatch](#onfiletypemismatch) | `onFileTypeMismatch={(file, acceptedTypes) => action()}` | function | optional | - |
@@ -23,7 +23,7 @@ These callback props allow you to hook into key moments of the file(s) selection
 | [onFilesSelected](#onfilesselected) | `onFilesSelected={files => action()}` | function | optional | - |
 | [onIntegrationClick](#onintegrationclick) | `onIntegrationClick={integrationType => action()}` | function | optional | - |
 | [onPrepareFiles](#onpreparefiles) | `onPrepareFiles={files => action()}` | function | optional | - |
-| [onWarn](#onwarn) | `onWarn={warningMessage => action()}` | function | optional | [`toast.warn`](https://sonner.emilkowal.ski/toast#warn) |
+| [onWarn](#onwarn) | `onWarn={warningMessage => action()}` | function | optional | [`toast.warn`](https://fkhadra.github.io/react-toastify/api/toast) |
 
 <!-- ## onCancelUpload
 
@@ -44,7 +44,7 @@ Global error handler for critical failures:
 - Storage provider API failures
 - File validation errors
 
-**Default**: Displays error toast using [`sonner`](https://sonner.emilkowal.ski/)
+**Default**: Displays error toast using [`react-toastify`](https://fkhadra.github.io/react-toastify)
 
 ## `onFileClick`
 
@@ -209,7 +209,7 @@ Non-critical notifications including:
 - Partial cloud storage failures
 - Near-quota warnings
 
-**Default**: Displays warning toast using [`sonner`](https://sonner.emilkowal.ski/)
+**Default**: Displays warning toast using [`react-toastify`](https://fkhadra.github.io/react-toastify)
 
 ## Custom Event Params
 

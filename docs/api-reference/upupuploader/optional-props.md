@@ -81,7 +81,7 @@ When using TypeScript, you must use the `UploadAdapter` enum value exported from
 **Example:**
 
 ```javascript
-import { UpupUploader, UploadAdapter } from "@bassem97/upup";
+import { UpupUploader, UploadAdapter } from "@devino.solutions/upup";
 
 // Correct usage with enum
 <UpupUploader

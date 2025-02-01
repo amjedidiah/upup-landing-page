@@ -21,7 +21,7 @@ export default function Uploader({ limit, mini }: Props) {
           UpupProvider,
           UploadAdapter,
           // eslint-disable-next-line @typescript-eslint/no-require-imports
-        } = require("@bassem97/upup");
+        } = require("@devino.solutions/upup");
 
         const uploadAdapters = [
           UploadAdapter.INTERNAL,
