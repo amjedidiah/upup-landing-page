@@ -13,25 +13,25 @@ Install upup with your favourite package manager
 ### npm
 
 ```bash
-npm install @devino.solutions/upup
+npm install upup-react-file-uploader
 ```
 
 ### yarn
 
 ```bash
-yarn add @devino.solutions/upup
+yarn add upup-react-file-uploader
 ```
 
 ### pnpm
 
 ```bash
-pnpm add @devino.solutions/upup
+pnpm add upup-react-file-uploader
 ```
 
 ### bun
 
 ```bash
-bun install @devino.solutions/upup
+bun install upup-react-file-uploader
 ```
 
 ## Logic Diagram
@@ -43,22 +43,22 @@ sequenceDiagram
     participant Client as Client (UpupUploader)
     participant Server as Node.js Server
     participant Cloud as Cloud Storage (S3/Azure/etc)
-    
+
     Client->>Server: POST to tokenEndpoint with file metadata
     Note right of Server: Uses s3GeneratePresignedUrl/azureGenerateSasUrl<br/>(src/index.node.ts:1-4)
     Server-->>Client: Returns presigned URL + upload key
-    
+
     Client->>Cloud: PUT/POST file directly using presigned URL
     Cloud-->>Client: Upload confirmation
-    
+
     loop Progress Updates
         Client->>Client: Track upload progress<br/>(useRootProvider.ts:199-222)
         Client-->>Client: Update filesProgressMap<br/>(src/frontend/hooks/useRootProvider.ts:203-210)
     end
-    
+
     Client->>Server: Finalize upload (optional)
     Server-->>Client: Confirm storage metadata
-    
+
     Note over Client,Cloud: Handles multiple adapters<br/>(Google Drive, OneDrive etc)<br/>via separate flows (useOneDriveUploader.ts:1-132)
 ```
 
@@ -69,7 +69,7 @@ The example below shows a minimal configuration for AWS S3 upload, using the [Up
 ### Client Side
 
 ```tsx
-import { UpupUploader, UpupProvider } from "@devino.solutions/upup";
+import { UpupUploader, UpupProvider } from "upup-react-file-uploader";
 
 export default function Uploader() {
   return (
@@ -83,7 +83,7 @@ export default function Uploader() {
 
 :::note
 
-The [`UpupUploader`](/docs/category/upupuploader) must be placed in a client component.
+The [`UpupUploader`](/docs/category/upupuploader) must be placed in a client component. i.e For Next.js add the `use client` directive at the top of the example `Uploader` component
 
 :::
 
@@ -99,18 +99,23 @@ export default function App() {
 
 :::info
 
- [`provider`](/docs/api-reference/upupuploader/required-props.md#provider) and [`tokenEndpoint`](/docs/api-reference/upupuploader/required-props.md#tokenendpoint) are the only required props for the UpupUploader component. For a full list of component props, check out these [docs](/docs/category/upupuploader).
+[`provider`](/docs/api-reference/upupuploader/required-props.md#provider) and [`tokenEndpoint`](/docs/api-reference/upupuploader/required-props.md#tokenendpoint) are the only required props for the UpupUploader component. For a full list of component props, check out these [docs](/docs/category/upupuploader).
 
 :::
 
 ### Server Side
 
-```ts
-import { s3GeneratePresignedUrl } from "@devino.solutions/upup/server";
+:::warning
 
-app.post('/api/upload-token', async (req, res) => {
+The example below is the minimal required configuration for **AWS** S3 upload. For uploading to other services see these [docs](/docs/code-examples.md)
+:::
+
+```ts
+import { s3GeneratePresignedUrl } from "upup-react-file-uploader/server";
+
+app.post("/api/upload-token", async (req, res) => {
   try {
-    const { provider, ...fileParams } = req.body; // The request body sent from the `UpupUploader` client component
+    const { provider, customProps, ...fileParams } = req.body; // The request body sent from the `UpupUploader` client component
     const origin = req.headers["origin"]; // The origin of your client application
 
     // Generate presigned URL
@@ -128,13 +133,11 @@ app.post('/api/upload-token', async (req, res) => {
       },
     });
 
-    return res
-      .status(200)
-      .json({
-        data: presignedData,
-        message: "Upload successful!",
-        error: false,
-      });
+    return res.status(200).json({
+      data: presignedData,
+      message: "Upload successful!",
+      error: false,
+    });
   } catch (error) {
     return res.status(500).json({
       message: (error as Error).message,
@@ -143,8 +146,6 @@ app.post('/api/upload-token', async (req, res) => {
   }
 });
 ```
-
-Once again, the example shown above is the minimal required configuration for AWS S3 upload. For uploading to other services see these [docs](/docs/code-examples.md)
 
 ### Important Note
 

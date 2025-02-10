@@ -126,7 +126,7 @@ These classNames are responsible for the general look and feel of the component 
 The UpupUploader component uses container queries for responsive layout adjustments. The `@cs/main` utility class applies styles when the container width is above `475px`. The following values for `containerFull` will translate to the following CSS style:
 
 ```tsx
-import { UpupUploader, UpupProvider } from "@devino.solutions/upup";
+import { UpupUploader, UpupProvider } from "upup-react-file-uploader";
 
 export default function Uploader() {
   return (

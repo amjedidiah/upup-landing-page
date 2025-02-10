@@ -8,7 +8,7 @@ type Props = {
   mini: boolean;
 };
 
-export default function Uploader({ limit, mini }: Props) {
+export default function Uploader({ limit, mini }: Readonly<Props>) {
   const { colorMode } = useColorMode();
   const { siteConfig } = useDocusaurusContext();
   const dark = useMemo(() => colorMode === "dark", [colorMode]);
@@ -21,7 +21,7 @@ export default function Uploader({ limit, mini }: Props) {
           UpupProvider,
           UploadAdapter,
           // eslint-disable-next-line @typescript-eslint/no-require-imports
-        } = require("@devino.solutions/upup");
+        } = require("upup-react-file-uploader");
 
         const uploadAdapters = [
           UploadAdapter.INTERNAL,

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 export default function HeroSection() {
   const installationText = useMemo(
-    () => "npm install @devino.solutions/upup",
+    () => "npm install upup-react-file-uploader",
     []
   );
   const handleCopy = useCallback(() => {
@@ -32,7 +32,7 @@ export default function HeroSection() {
         </div>
 
         <Heading as="h1" className={clsx("hero__title", styles.heroTitle)}>
-          File Uploads for the
+          File Uploads for the{" "}
           <span className={styles.heroTitleSpan}>Modern Web</span>
         </Heading>
 

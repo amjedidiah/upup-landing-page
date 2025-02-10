@@ -152,7 +152,7 @@ interface PresignedUrlResponse {
 4. Store credentials in environment variables as such:
 
 ```ts
-const { provider, ...fileParams } = req.body;
+const { provider, customProps, ...fileParams } = req.body;
 
 s3GeneratePresignedUrl({
   origin: origin as string,

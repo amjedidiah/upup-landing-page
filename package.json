@@ -16,7 +16,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@devino.solutions/upup": "^1.0.1",
     "@docusaurus/core": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/theme-common": "^3.7.0",
@@ -26,7 +25,8 @@
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-toastify": "^11.0.3"
+    "react-toastify": "^11.0.3",
+    "upup-react-file-uploader": "^1.0.2"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.7.0",

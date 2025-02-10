@@ -10,7 +10,7 @@ sidebar_position: 3
 
 ```tsx
 "use client";
-import { UpupUploader, UpupProvider } from "@devino.solutions/upup";
+import { UpupUploader, UpupProvider } from "upup-react-file-uploader";
 
 export default function Uploader() {
   return (
@@ -23,24 +23,21 @@ export default function Uploader() {
 ```
 
 ```tsx
-import dynamic from "next/dynamic";
-const DynamicUploader = dynamic(() => import("./components/Uploader"), {
-  ssr: false,
-});
+import Uploader from "./components/Uploader";
 
 export default function Page() {
-  return <DynamicUploader />;
+  return <Uploader />;
 }
 ```
 
 ```ts
-import { s3GeneratePresignedUrl } from "@devino.solutions/upup/server";
+import { s3GeneratePresignedUrl } from "upup-react-file-uploader/server";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { provider, ...fileParams } = body;
+    const { provider, customProps, ...fileParams } = body;
 
     const origin = req.headers.get("origin");
 
@@ -86,7 +83,11 @@ export async function POST(req: Request) {
 ### React.js Basic Implementation
 
 ```tsx
-import { UpupUploader, UpupProvider, UploadAdapter } from "@devino.solutions/upup";
+import {
+  UpupUploader,
+  UpupProvider,
+  UploadAdapter,
+} from "upup-react-file-uploader";
 
 export default function Uploader() {
   return (
@@ -105,7 +106,7 @@ export default function Uploader() {
 - [`tokenEndpoint`](/docs/api-reference/upupuploader/required-props.md#tokenendpoint): Your backend endpoint that calls the utility functions to handle the file upload
 
 > No need for the "use client" directive with React, since all React components are client components by default.
-:::
+> :::
 
 ### Express.js Backend Configuration
 
@@ -117,7 +118,7 @@ import dotenv from "dotenv";
 import {
   s3GeneratePresignedUrl,
   azureGenerateSasUrl,
-} from "@devino.solutions/upup/server";
+} from "upup-react-file-uploader/server";
 
 dotenv.config();
 const app = express();
@@ -130,7 +131,7 @@ app.use(express.json());
 ```ts
 app.post("/api/storage/aws/upload-url", async (req, res) => {
   try {
-    const { provider, ...fileParams } = req.body;
+    const { provider, customProps, ...fileParams } = req.body;
 
     const presignedData = await s3GeneratePresignedUrl({
       origin: req.headers.origin as string,
@@ -158,7 +159,7 @@ app.post("/api/storage/aws/upload-url", async (req, res) => {
 ```ts
 app.post("/api/storage/azure/upload-url", async (req, res) => {
   try {
-    const { provider, ...fileParams } = req.body;
+    const { provider, customProps, ...fileParams } = req.body;
 
     const uploadData = await azureGenerateSasUrl({
       fileParams,
@@ -183,7 +184,7 @@ app.post("/api/storage/azure/upload-url", async (req, res) => {
 ```ts
 app.post("/api/storage/backblaze/upload-url", async (req, res) => {
   try {
-    const { provider, ...fileParams } = req.body;
+    const { provider, customProps, ...fileParams } = req.body;
 
     const presignedData = await s3GeneratePresignedUrl({
       origin: req.headers.origin as string,
@@ -213,7 +214,7 @@ app.post("/api/storage/backblaze/upload-url", async (req, res) => {
 ```ts
 app.post("/api/storage/digitalocean/upload-url", async (req, res) => {
   try {
-    const { provider, ...fileParams } = req.body;
+    const { provider, customProps, ...fileParams } = req.body;
 
     const presignedData = await s3GeneratePresignedUrl({
       origin: req.headers.origin as string,

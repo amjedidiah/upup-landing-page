@@ -6,15 +6,15 @@ sidebar_position: 5
 
 These optional props are not required for the UpupUploader component to work.
 
-| Prop | Example | Type | Status | Default Value |
-| ---  | ------- | ---- | ------ | ------------- |
-| [accept](#accept) | `accept="image/png"` | string | optional | `*` |
-| [dark](#dark) | `dark={true}` | boolean | optional | `false` |
-| [driveConfigs](#driveconfigs) | `driveConfigs={{ oneDrive: { onedrive_client_id: process.env.NEXT_PUBLIC_ONEDRIVE_CLIENT_ID! } }}` | object | optional | - |
-| [limit](#limit) | `limit={5}` | number | optional | `1` |
-| [maxFileSize](#maxfilesize) | `maxFileSize={{ size: 20, unit: "MB" }}` | object | optional | `{ size: 10, unit: "MB" }` |
-| [mini](#mini) | `mini={true}` | boolean | optional | `false` |
-| [uploadAdapters](#uploadadapters) | `uploadAdapters={[UploadAdapter.LINK]}` | UploadAdapter[] | optional | `[UploadAdapter.INTERNAL, UploadAdapter.LINK]` |
+| Prop                              | Example                                                                                            | Type            | Status   | Default Value                                  |
+| --------------------------------- | -------------------------------------------------------------------------------------------------- | --------------- | -------- | ---------------------------------------------- |
+| [accept](#accept)                 | `accept="image/png"`                                                                               | string          | optional | `*`                                            |
+| [dark](#dark)                     | `dark={true}`                                                                                      | boolean         | optional | `false`                                        |
+| [driveConfigs](#driveconfigs)     | `driveConfigs={{ oneDrive: { onedrive_client_id: process.env.NEXT_PUBLIC_ONEDRIVE_CLIENT_ID! } }}` | object          | optional | -                                              |
+| [limit](#limit)                   | `limit={5}`                                                                                        | number          | optional | `1`                                            |
+| [maxFileSize](#maxfilesize)       | `maxFileSize={{ size: 20, unit: "MB" }}`                                                           | object          | optional | `{ size: 10, unit: "MB" }`                     |
+| [mini](#mini)                     | `mini={true}`                                                                                      | boolean         | optional | `false`                                        |
+| [uploadAdapters](#uploadadapters) | `uploadAdapters={[UploadAdapter.LINK]}`                                                            | UploadAdapter[] | optional | `[UploadAdapter.INTERNAL, UploadAdapter.LINK]` |
 
 ## `accept`
 
@@ -39,15 +39,19 @@ Configuration object for cloud drive integrations. Required if using Google Driv
 ```javascript
 driveConfigs={{
   googleDrive: {
-    google_api_key: process.env.GOOGLE_API_KEY,
-    google_app_id: process.env.GOOGLE_APP_ID,
-    google_client_id: process.env.GOOGLE_CLIENT_ID
+    google_api_key: <KEY_NAME_IN_ENV_FILE>,
+    google_app_id: <KEY_NAME_IN_ENV_FILE>,
+    google_client_id: <KEY_NAME_IN_ENV_FILE>
   },
   oneDrive: {
-    onedrive_client_id: process.env.ONEDRIVE_CLIENT_ID,
+    onedrive_client_id: <KEY_NAME_IN_ENV_FILE>,
   }
 }}
 ```
+
+:::note
+For Next.js, don't forget to add the `NEXT_PUBLIC_` before the environment variable name. For instance: `GOOGLE_API_KEY` will now become `NEXT_PUBLIC_GOOGLE_API_KEY`
+:::
 
 ## `limit`
 
@@ -81,7 +85,7 @@ When using TypeScript, you must use the `UploadAdapter` enum value exported from
 **Example:**
 
 ```javascript
-import { UpupUploader, UploadAdapter } from "@devino.solutions/upup";
+import { UpupUploader, UploadAdapter } from "upup-react-file-uploader";
 
 // Correct usage with enum
 <UpupUploader
@@ -98,3 +102,39 @@ The component will validate against these enum values and throw an error if inva
 :::note
 The order of the upload adapters in the array determines the display order in the UI
 :::
+
+## `customProps`
+
+An object for custom values that you want to pass to the [`tokenEndpoint`](/docs/api-reference/upupuploader/required-props.md). For example:
+
+```tsx
+import { UpupUploader, UpupProvider } from "upup-react-file-uploader";
+
+export default function Uploader() {
+  return (
+    <UpupUploader
+      provider={UpupProvider.AWS} // assuming we are uploading to AWS
+      tokenEndpoint="http://<path_to_your_server>/api/upload-token" // Path to your server route that calls our exported upload utilities
+      customProps={{ customValue: "hello world" }}
+    />
+  );
+}
+```
+
+```ts
+import { s3GeneratePresignedUrl } from "upup-react-file-uploader/server";
+
+app.post("/api/upload-token", async (req, res) => {
+  try {
+    const { provider, customProps, ...fileParams } = req.body; // The request body sent from the `UpupUploader` client component
+    const { customValue } = customProps;
+
+    // ...Rest of code
+  } catch (error) {
+    return res.status(500).json({
+      message: (error as Error).message,
+      error: true,
+    });
+  }
+});
+```
