@@ -33,16 +33,17 @@ sidebar_position: 4
 
 ### AWS S3
 
+:::info
+Attaching Permissions Policy below is only required when [`enableAutoCorsConfig`](/docs/api-reference/upupuploader/optional-props.md) is set to true, so we can automatically configure CORS for your origin on the bucket for you.
+
+If [`enableAutoCorsConfig`](/docs/api-reference/upupuploader/optional-props.md) is set to false, you will need to configure CORS for your origin on your bucket by yourself. Check these [docs](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html) for more info.
+:::
+
 1. Create IAM User:
    - AWS Console > IAM > Users > Add user
    - Programmatic access type
 2. Attach Permissions Policy:
    - `AmazonS3FullAccess`
-   - `AWSCloudFormationReadOnlyAccess`
-
-:::info
-Don't worry about configuring CORS for your S3 bucket, we'll do it programmatically for you
-:::
 
 ### Azure Blob Storage
 
@@ -68,6 +69,12 @@ az storage cors add --services b \
 [Azure Storage CORS Documentation](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-custom-domain-name)
 
 ### Backblaze B2
+
+:::info
+Allowing access to all buckets below is only required when [`enableAutoCorsConfig`](/docs/api-reference/upupuploader/optional-props.md) is set to true, so we can automatically configure CORS for your origin on the bucket for you.
+
+If [`enableAutoCorsConfig`](/docs/api-reference/upupuploader/optional-props.md) is set to false, you will need to configure CORS for your origin on your bucket by yourself. Check these [docs](https://www.backblaze.com/apidocs/s3-put-bucket-cors) for more info.
+:::
 
 1. Create Application Key:
    - B2 Cloud Storage > Application Keys
@@ -95,13 +102,13 @@ s3GeneratePresignedUrl({
 
 :::
 
-:::info
-Don't worry about configuring CORS for your S3 bucket, we'll do it programmatically for you
-:::
-
-[Backblaze S3 Compatibility Guide](https://www.backblaze.com/docs/cloud-storage-s3-compatible-api)
-
 ### Digital Ocean Spaces
+
+:::info
+When [`enableAutoCorsConfig`](/docs/api-reference/upupuploader/optional-props.md) is set to true, we can automatically configure CORS for your origin on the bucket for you.
+
+If [`enableAutoCorsConfig`](/docs/api-reference/upupuploader/optional-props.md) is set to false, you will need to configure CORS for your origin on your bucket by yourself. Check these [docs](https://docs.digitalocean.com/products/spaces/how-to/configure-cors/) for more info.
+:::
 
 1. Create Space:
    - DO Control Panel > Spaces > Create
@@ -130,18 +137,24 @@ s3GeneratePresignedUrl({
 
 :::
 
-:::info
-Don't worry about configuring CORS for your S3 bucket, we'll do it programmatically for you
-:::
-
-[DigitalOcean Spaces Guide](https://docs.digitalocean.com/products/spaces/)
-
 ## Security Best Practices
 
-1. Always restrict CORS origins
-2. Use IAM roles instead of root credentials where possible
-3. Rotate API keys frequently(quarterly)
+1. When using [`enableAutoCorsConfig`](/docs/api-reference/upupuploader/optional-props.md#enableautocorsconfig):
+
+   - Restrict credentials to only required CORS permissions
+   - Preferably, use separate credentials for CORS configuration and upload operations
+   - Monitor CORS configuration changes
+
+2. For manual CORS configuration:
+
+   - Follow provider-specific CORS guidelines
+   - Regularly audit bucket CORS rules
+
+3. General practices:
+   - Always restrict CORS origins
+   - Use IAM roles instead of root credentials where possible
+   - Rotate API keys frequently(quarterly)
 
 :::warning
- Never commit credentials to version control. Use environment variables and secret management systems.
- :::
+Never commit credentials to version control. Use environment variables and secret management systems.
+:::

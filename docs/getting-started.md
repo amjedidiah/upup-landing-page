@@ -110,12 +110,20 @@ export default function App() {
 The example below is the minimal required configuration for **AWS** S3 upload. For uploading to other services see these [docs](/docs/code-examples.md)
 :::
 
+:::tip CORS Configuration
+For the upload to work without errors, it is important to:
+
+1. Manually configure CORS using our [credentials guide](/docs/credentials-configuration.md#server-side-configurations), OR
+2. Enabling `enableAutoCorsConfig` with properly restricted credentials
+   :::
+
 ```ts
 import { s3GeneratePresignedUrl } from "upup-react-file-uploader/server";
 
 app.post("/api/upload-token", async (req, res) => {
   try {
-    const { provider, customProps, ...fileParams } = req.body; // The request body sent from the `UpupUploader` client component
+    const { provider, customProps, enableAutoCorsConfig, ...fileParams } =
+      req.body; // The request body sent from the `UpupUploader` client component
     const origin = req.headers["origin"]; // The origin of your client application
 
     // Generate presigned URL
@@ -131,6 +139,7 @@ app.post("/api/upload-token", async (req, res) => {
           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
         },
       },
+      enableAutoCorsConfig,
     });
 
     return res.status(200).json({

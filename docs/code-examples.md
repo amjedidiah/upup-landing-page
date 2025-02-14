@@ -37,7 +37,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { provider, customProps, ...fileParams } = body;
+    const { provider, customProps, enableAutoCorsConfig ...fileParams } = body;
 
     const origin = req.headers.get("origin");
 
@@ -56,6 +56,7 @@ export async function POST(req: Request) {
         endpoint: process.env.BACKBLAZE_S3_ENDPOINT,
         forcePathStyle: false,
       },
+      enableAutoCorsConfig
     });
 
     return NextResponse.json(presignedData);
@@ -131,7 +132,8 @@ app.use(express.json());
 ```ts
 app.post("/api/storage/aws/upload-url", async (req, res) => {
   try {
-    const { provider, customProps, ...fileParams } = req.body;
+    const { provider, customProps, enableAutoCorsConfig, ...fileParams } =
+      req.body;
 
     const presignedData = await s3GeneratePresignedUrl({
       origin: req.headers.origin as string,
@@ -145,6 +147,7 @@ app.post("/api/storage/aws/upload-url", async (req, res) => {
           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
         },
       },
+      enableAutoCorsConfig,
     });
 
     res.status(200).json(presignedData);
@@ -184,7 +187,8 @@ app.post("/api/storage/azure/upload-url", async (req, res) => {
 ```ts
 app.post("/api/storage/backblaze/upload-url", async (req, res) => {
   try {
-    const { provider, customProps, ...fileParams } = req.body;
+    const { provider, customProps, enableAutoCorsConfig, ...fileParams } =
+      req.body;
 
     const presignedData = await s3GeneratePresignedUrl({
       origin: req.headers.origin as string,
@@ -200,6 +204,7 @@ app.post("/api/storage/backblaze/upload-url", async (req, res) => {
         endpoint: process.env.BACKBLAZE_S3_ENDPOINT, // In this format: https://...
         forcePathStyle: false,
       },
+      enableAutoCorsConfig,
     });
 
     res.status(200).json(presignedData);
@@ -214,7 +219,8 @@ app.post("/api/storage/backblaze/upload-url", async (req, res) => {
 ```ts
 app.post("/api/storage/digitalocean/upload-url", async (req, res) => {
   try {
-    const { provider, customProps, ...fileParams } = req.body;
+    const { provider, customProps, enableAutoCorsConfig, ...fileParams } =
+      req.body;
 
     const presignedData = await s3GeneratePresignedUrl({
       origin: req.headers.origin as string,
@@ -230,6 +236,7 @@ app.post("/api/storage/digitalocean/upload-url", async (req, res) => {
         endpoint: process.env.DIGITAL_OCEAN_SPACES_ENDPOINT, // In this format: https://...
         forcePathStyle: false,
       },
+      enableAutoCorsConfig,
     });
 
     res.status(200).json(presignedData);

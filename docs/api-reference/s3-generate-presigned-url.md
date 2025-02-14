@@ -10,14 +10,16 @@ This server-side utility generates secure presigned URLs for direct S3 uploads f
 
 It has a single parameter. An object with the following key values:
 
-| Parameter                           | Type                                                                        | Status   | Default Value |
-| ----------------------------------- | --------------------------------------------------------------------------- | -------- | ------------- |
-| [`bucketName`](#bucketname)         | string                                                                      | required | N/A           |
-| [`expiresIn`](#expiresin)           | number                                                                      | optional | 3600          |
-| [`fileParams`](#fileparams)         | object                                                                      | required | N/A           |
-| [`origin`](#origin)                 | string                                                                      | required | N/A           |
-| [`provider`](#provider)             | [UpupProvider](/docs/api-reference/upupuploader/required-props.md#provider) | required | N/A           |
-| [`s3ClientConfig`](#s3clientconfig) | object                                                                      | required | N/A           |
+| Parameter                                       | Type                                                                        | Status   | Default Value |
+| ----------------------------------------------- | --------------------------------------------------------------------------- | -------- | ------------- |
+| [`bucketName`](#bucketname)                     | string                                                                      | required | N/A           |
+| [`expiresIn`](#expiresin)                       | number                                                                      | optional | 3600          |
+| [`fileParams`](#fileparams)                     | object                                                                      | required | N/A           |
+| [`origin`](#origin)                             | string                                                                      | required | N/A           |
+| [`provider`](#provider)                         | [UpupProvider](/docs/api-reference/upupuploader/required-props.md#provider) | required | N/A           |
+| [`customProps`](#customprops)                   | object                                                                      | optional | undefined     |
+| [`enableAutoCorsConfig`](#enableautocorsconfig) | boolean                                                                     | optional | `false`       |
+| [`s3ClientConfig`](#s3clientconfig)             | object                                                                      | required | N/A           |
 
 ### `bucketName`
 
@@ -96,6 +98,16 @@ app.post("/api/upload-token", (req, res) => {
 ### `provider`
 
 Read more about this [here](/docs/api-reference/upupuploader/required-props.md#provider)
+This is passed from the client in the request body.
+
+### `customProps`
+
+Read more about this [here](/docs/api-reference/upupuploader/optional-props.md#customprops)
+This is passed from the client in the request body.
+
+### `enableAutoCorsConfig`
+
+Read more about this [here](/docs/api-reference/upupuploader/optional-props.md#enableautocorsconfig)
 This is passed from the client in the request body.
 
 ### `s3ClientConfig`
